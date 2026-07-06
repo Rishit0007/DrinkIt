@@ -8,6 +8,8 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Data
 @Document(collection = "Users")
 @AllArgsConstructor
@@ -23,4 +25,6 @@ public class User {
     private String email;
     private String address;
     private String phoneNo;
+    private List<String> roles;
+
 }
