@@ -1,5 +1,6 @@
 package com.DrinkIt.Beverage_delivery.configuration;
 
+import com.DrinkIt.Beverage_delivery.filters.JwtFilter;
 import com.DrinkIt.Beverage_delivery.services.UserServiceDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -22,11 +23,13 @@ public class SpringSecurity {
 
     @Autowired
     UserServiceDetailsImpl userServiceDetailsImpl;
+    @Autowired
+    JwtFilter jwtFilter;
 
     @Bean
     protected SecurityFilterChain configure(HttpSecurity http){
         return http.authorizeHttpRequests(requests-> requests
-                .requestMatchers("/public**").permitAll()
+                .requestMatchers("/public/**").permitAll()
                 .requestMatchers("/user").authenticated()
                 .requestMatchers("/admin**").hasRole("ADMIN")
                 .anyRequest()
