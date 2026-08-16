@@ -17,8 +17,8 @@ import java.util.List;
 @AllArgsConstructor
 public class Cart {
     @Id
-    private ObjectId cartId;
+    private String cartId;
     @NonNull
-    private ObjectId userId;
-    List<CartItems> cartItems = new ArrayList<>();
+    private String userId;
+    List<CartItem> cartItems = new ArrayList<>();
 }

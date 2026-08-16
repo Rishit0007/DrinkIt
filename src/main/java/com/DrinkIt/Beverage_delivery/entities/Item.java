@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 public class Item {
     @Id
-    private ObjectId itemId;
+    private String itemId;
     @NonNull
     private String itemName;
     @NonNull

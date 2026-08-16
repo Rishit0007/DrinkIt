@@ -1,10 +1,8 @@
 package com.DrinkIt.Beverage_delivery.repositories;
 
-import com.DrinkIt.Beverage_delivery.entities.CartItems;
+import com.DrinkIt.Beverage_delivery.entities.CartItem;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import java.io.ObjectInput;
-
-public interface CartItemRepository extends MongoRepository<CartItems, ObjectId> {
+public interface CartItemRepository extends MongoRepository<CartItem, String> {
 }

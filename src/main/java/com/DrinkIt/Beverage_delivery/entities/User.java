@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 public class User {
     @Id
-    private ObjectId userId;
+    private String userId;
     @NonNull
     private String username;
     @NonNull

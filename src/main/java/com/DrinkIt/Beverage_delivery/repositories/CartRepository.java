@@ -1,8 +1,12 @@
 package com.DrinkIt.Beverage_delivery.repositories;
 
 import com.DrinkIt.Beverage_delivery.entities.Cart;
-import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface CartRepository extends MongoRepository<Cart, ObjectId> {
+import java.util.Optional;
+
+public interface CartRepository extends MongoRepository<Cart, String> {
+
+    public Optional<Cart> findByUserId(String id);
+
 }
