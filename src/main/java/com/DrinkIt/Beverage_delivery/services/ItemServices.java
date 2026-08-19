@@ -1,6 +1,7 @@
 package com.DrinkIt.Beverage_delivery.services;
 
 import com.DrinkIt.Beverage_delivery.entities.Item;
+import com.DrinkIt.Beverage_delivery.exceptions.ItemNotFoundException;
 import com.DrinkIt.Beverage_delivery.repositories.ItemRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,17 +16,17 @@ public class ItemServices {
     @Autowired
     ItemRepository itemRepository;
 
-    public void listNewItem(Item item){
-        try{
-            if(!itemRepository.existsById(item.getItemId())){
-                itemRepository.save(item);
-            }
-        }catch (Exception e){
-            log.error(e.toString());
-        }
+    public int validateStock(String itemId){
+
+        Item item = itemRepository.findById(itemId).orElseThrow(()->new ItemNotFoundException(itemId));
+        return item.getStockLeft();
     }
 
-    public Optional<Item> findById(String itemId){
+    public void save(Item item){
+        itemRepository.save(item);
+    }
+
+    public Optional<Item> findById(String itemId) {
         return itemRepository.findById(itemId);
     }
 }

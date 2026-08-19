@@ -7,6 +7,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
 public interface ItemRepository extends MongoRepository<Item, String> {
-    @Override
-    Optional<Item> findById(String s);
+    public Optional<Item> findById(String s);
 }
