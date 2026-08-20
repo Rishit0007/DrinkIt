@@ -166,27 +166,22 @@ public class CartServices {
             addToCart(userId, itemId, newQuantity);
             return;
         }
-        CartItem existing = null;
-        if (item.isPresent()) {
-            existing = item.get();
-            int oldQuantity = existing.getQuantity();
-            if (oldQuantity < newQuantity) {
-                if (itemServices.validateStock(itemId) > newQuantity - oldQuantity) {
-                    existing.setQuantity(newQuantity);
-
-                } else {
-                    throw new InsufficientStockException(itemId);
-                }
+        CartItem existing = item.get();
+        int oldQuantity = existing.getQuantity();
+        if (oldQuantity < newQuantity) {
+            if (itemServices.validateStock(itemId) < newQuantity - oldQuantity) {
+                throw new InsufficientStockException(itemId);
             }
-
-
         }
+        existing.setQuantity(newQuantity);
+
+
+
         cartRepository.save(cart);
 
 
     }
 
-//    check for item in cart ,if get currnt quantity and id its less than upqty add teh difference after validating stock and if its greater than upqty reduce the existing qyantity form cart and add teh remaining back to stock
 
 
 
