@@ -42,7 +42,7 @@ public class PublicController {
         user.setUsername(userDTO.getUsername());
         user.setEmail(userDTO.getEmail());
         user.setPassword(userDTO.getPassword());
-        Optional<User> targetUser = Optional.ofNullable(userServices.findUserByUsername(userDTO.getUsername()));
+        Optional<User> targetUser = Optional.ofNullable(userServices.findByUsername(userDTO.getUsername()));
         try{
             if(targetUser.isEmpty()) {
                 userServices.saveNewUser(user);

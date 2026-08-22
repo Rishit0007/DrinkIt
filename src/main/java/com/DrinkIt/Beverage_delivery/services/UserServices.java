@@ -38,10 +38,10 @@ public class UserServices {
         userRepository.save(user);
     }
 
-    public User findUserByUsername(String username){
-        return userRepository.findUserByUsername(username);
+    public User findByUsername(String username){
+        return userRepository.findByUsername(username);
     }
-    public Optional<User> findUserById(String userId){
-        return userRepository.findUserById(userId);
+    public Optional<User> findById(String userId){
+        return userRepository.findById(userId);
     }
 }

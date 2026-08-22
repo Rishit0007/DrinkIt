@@ -17,7 +17,7 @@ public class UserServiceDetailsImpl implements UserDetailsService {
     JwtUtils jwtUtils;
 
     public UserDetails loadUserByUsername(String username){
-        User user = userRepository.findUserByUsername(username);
+        User user = userRepository.findByUsername(username);
         if(user!=null){
             return org.springframework.security.core.userdetails.User.builder()
                     .username(user.getUsername())

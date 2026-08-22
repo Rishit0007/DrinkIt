@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 @Slf4j
 @RestController
 @RequestMapping("/user")
@@ -22,7 +21,7 @@ public class UserController {
     @PutMapping("/change-username")
     public ResponseEntity<?> updateUsername(@RequestBody UserDTO userDTO){
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        User user = userServices.findUserByUsername(username);
+        User user = userServices.findByUsername(username);
         try{
             if(userDTO.getUsername()!= null && !userDTO.getUsername().isEmpty()) {
                 user.setUsername(userDTO.getUsername());
@@ -44,7 +43,7 @@ public class UserController {
     @PostMapping("/add-address")
     public ResponseEntity<?> addAddress(@RequestBody UserDTO userDTO){
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        User user = userServices.findUserByUsername(username);
+        User user = userServices.findByUsername(username);
         try{
             if(userDTO.getAddress()!= null && !userDTO.getAddress().isEmpty()) {
                 user.setAddress(userDTO.getAddress());
@@ -66,7 +65,7 @@ public class UserController {
     @PostMapping("/add-phone")
     public ResponseEntity<?> addPhone(@RequestBody UserDTO  userDTO){
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        User user = userServices.findUserByUsername(username);
+        User user = userServices.findByUsername(username);
         try{
             if(userDTO.getPhoneNo()!=null && userDTO.getPhoneNo().length()==10) {
                 user.setPhoneNo(userDTO.getPhoneNo());
